@@ -6,7 +6,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     position.cpp \
     Model/tank.cpp \
-    Model/tanksfield.cpp
+    Model/tanksfield.cpp \
+    gameproperties.cpp
 
 RESOURCES += qml.qrc
 
@@ -19,5 +20,6 @@ include(deployment.pri)
 HEADERS += \
     Model/tank.h \
     postion.h \
-    Model/tanksfield.h
+    Model/tanksfield.h \
+    gameproperties.h
 

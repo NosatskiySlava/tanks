@@ -6,8 +6,8 @@ Window {
 
     visible: true
 
-    width: 32 * 16
-    height: 32 * 15
+    width: Props.tankImageSize * 16
+    height: Props.tankImageSize * 15
 
    // flags: Qt.MSWindowsFixedSizeDialogHint
 

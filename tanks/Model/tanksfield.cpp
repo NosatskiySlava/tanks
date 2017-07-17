@@ -8,14 +8,6 @@ TanksField::TanksField(QObject *parent) : QObject(parent)
 
 }
 
-int TanksField::fieldWidth() const {
-    return m_fieldWidth;
-}
-
-int TanksField::fieldHeight() const {
-    return m_fieldHeight;
-}
-
 void TanksField::setPlayer1(QObject* tank) {
     m_player1 = dynamic_cast<Tank*>(tank);
 }
