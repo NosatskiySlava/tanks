@@ -12,13 +12,12 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<Tank>("tanks.model.tank", 1, 0, "Tank");
-    qmlRegisterType<TanksField>("tanks.model.tanksfield", 1, 0, "TanksField");
-
     GameProperties props;
+    TanksField tanksField;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("Props", &props);
+    engine.rootContext()->setContextProperty("TankPlayer1", tanksField.player1().get());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
     return app.exec();

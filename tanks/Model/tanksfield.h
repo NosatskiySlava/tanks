@@ -3,13 +3,13 @@
 
 #include <QObject>
 
+#include <memory>
+
 class Tank;
 
 class TanksField : public QObject
 {
     Q_OBJECT
-
-    Q_PROPERTY(QObject* player1 READ player1 WRITE setPlayer1 NOTIFY player1Changed)
 
 public:
     explicit TanksField(QObject *parent = 0);
@@ -19,14 +19,10 @@ public:
     Q_INVOKABLE void movePlayer1Left();
     Q_INVOKABLE void movePlayer1Right();
 
-    void setPlayer1(QObject* player1);
-    QObject* player1() const;
-
-signals:
-    void player1Changed();
+    const std::shared_ptr<Tank> player1() const;
 
 private:
-    Tank* m_player1;
+    std::shared_ptr<Tank> m_player1;
 };
 
 #endif // TANKSFIELD_H

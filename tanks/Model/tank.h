@@ -13,7 +13,6 @@ Q_OBJECT
 
 public:
     explicit Tank(QObject* parent = nullptr);
-    virtual ~Tank();
 
     void moveUp();
     void moveDown();
@@ -26,6 +25,10 @@ public:
 signals:
     void xChanged();
     void yChanged();
+    void movedLeft();
+    void movedRight();
+    void movedUp();
+    void movedDown();
 
 private:
     Position m_pos;

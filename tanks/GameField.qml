@@ -20,37 +20,25 @@ Rectangle {
 
         color: 'black'
 
-        Keys.onUpPressed: moveUp()
-        Keys.onDownPressed: moveDown()
-        Keys.onLeftPressed: moveLeft()
-        Keys.onRightPressed: moveRight()
-
-        function moveUp() {
-            player1.jumpTo("moveUp");
-            player1.y -= 1;
-        }
-
-        function moveDown() {
-            player1.jumpTo("moveDown");
-            player1.y += 1;
-        }
-
-        function moveLeft() {
-            player1.jumpTo("moveLeft");
-            player1.x -= 1;
-        }
-
-        function moveRight() {
-            player1.jumpTo("moveRight");
-            player1.x += 1;
-        }
+        Keys.onUpPressed: TankPlayer1.movedUp()
+        Keys.onDownPressed: TankPlayer1.movedDown()
+        Keys.onLeftPressed: TankPlayer1.movedLeft()
+        Keys.onRightPressed: TankPlayer1.movedRight()
 
         Player1 {
             id: player1
 
-            x: 16
-            y: 200
+            x: TankPlayer1.x
+            y: TankPlayer1.y
         }
+
+        Connections  {
+             target: TankPlayer1
+             onMovedLeft: player1.jumpTo("moveLeft");
+             onMovedRight: player1.jumpTo("moveRight");
+             onMovedUp: player1.jumpTo("moveUp");
+             onMovedDown: player1.jumpTo("moveDown");
+         }
     }
 }
 

@@ -3,16 +3,12 @@
 #include "tank.h"
 
 TanksField::TanksField(QObject *parent) : QObject(parent)
-  , m_player1(nullptr)
+  , m_player1(new Tank())
 {
 
 }
 
-void TanksField::setPlayer1(QObject* tank) {
-    m_player1 = dynamic_cast<Tank*>(tank);
-}
-
-QObject* TanksField::player1() const {
+const std::shared_ptr<Tank> TanksField::player1() const {
     return m_player1;
 }
 
