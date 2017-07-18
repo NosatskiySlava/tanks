@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     position.cpp \
     Model/tank.cpp \
     Model/tanksfield.cpp \
-    gameproperties.cpp
+    gameproperties.cpp \
+    gamemanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -21,5 +22,6 @@ HEADERS += \
     Model/tank.h \
     postion.h \
     Model/tanksfield.h \
-    gameproperties.h
+    gameproperties.h \
+    gamemanager.h
 

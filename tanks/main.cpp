@@ -7,6 +7,7 @@
 #include <Model/tanksfield.h>
 
 #include<gameproperties.h>
+#include <gamemanager.h>
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("TankPlayer1", tanksField.player1().get());
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
+    GameManager manager;
     return app.exec();
 }
 
