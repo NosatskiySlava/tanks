@@ -4,19 +4,19 @@ GameProperties::GameProperties(QObject *parent) : QObject(parent) {
 
 }
 
-int GameProperties::fieldWidth() const {
+int GameProperties::fieldWidth() {
     return m_fieldWidth;
 }
 
-int GameProperties::fieldHeight() const {
+int GameProperties::fieldHeight() {
     return m_fieldHeight;
 }
 
-int GameProperties::tankImageSize() const {
+int GameProperties::tankImageSize() {
     return m_tankImageSize;
 }
 
-int GameProperties::tankIconSize() const {
+int GameProperties::tankIconSize() {
     return m_tankIconSize;
 }
 

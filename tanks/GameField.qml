@@ -20,10 +20,9 @@ Rectangle {
 
         color: 'black'
 
-        Keys.onUpPressed: TankPlayer1.movedUp()
-        Keys.onDownPressed: TankPlayer1.movedDown()
-        Keys.onLeftPressed: TankPlayer1.movedLeft()
-        Keys.onRightPressed: TankPlayer1.movedRight()
+        Keys.onPressed: {
+            Input.executeCommand(event.key);
+        }
 
         Player1 {
             id: player1

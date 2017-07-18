@@ -15,10 +15,10 @@ class GameProperties : public QObject
 public:
     explicit GameProperties(QObject *parent = 0);
 
-    int tankIconSize() const;
-    int tankImageSize() const;
-    int fieldWidth() const;
-    int fieldHeight() const;
+    static int tankIconSize();
+    static int tankImageSize();
+    static int fieldWidth();
+    static int fieldHeight();
 
 signals:
     void tankIconSizeChanged();
