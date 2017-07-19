@@ -14,7 +14,9 @@ class Bullet : public QObject {
     Q_PROPERTY(Common::EDirection::Type dir READ dir CONSTANT)
 
 public:
+    explicit Bullet(QObject *parent = 0);
     explicit Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *parent = 0);
+    ~Bullet();
 
     void move();
 

@@ -1,6 +1,11 @@
 #include "bullet.h"
 
 #include <QtGlobal>
+#include <QtDebug>
+
+Bullet::Bullet(QObject *parent) : QObject(parent) {
+
+}
 
 Bullet::Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *parent) : QObject(parent)
 , m_dir(dir)
@@ -43,5 +48,9 @@ int Bullet::y() const {
 Common::EDirection::Type Bullet::dir() const
 {
     return m_dir;
+}
+
+Bullet::~Bullet() {
+    qDebug() << "~Bullet()";
 }
 

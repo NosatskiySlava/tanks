@@ -1,5 +1,7 @@
 import QtQuick 2.0
 
+import model.bullet 1.0
+
 Rectangle {
     id: root
 
@@ -46,7 +48,9 @@ Rectangle {
 
         Connections {
             target: TanksField
-            onBulletAdded: console.log("Cha Cha cha");
+            onBulletAdded: {
+
+            }
         }
     }
 }
