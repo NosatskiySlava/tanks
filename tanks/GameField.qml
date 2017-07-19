@@ -31,6 +31,11 @@ Rectangle {
             y: TankPlayer1.y
         }
 
+        Bullet {
+            x: 160
+            y: 100
+        }
+
         Connections  {
              target: TankPlayer1
              onMovedLeft: player1.jumpTo("moveLeft");

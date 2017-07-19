@@ -4,5 +4,6 @@
         <file>GameField.qml</file>
         <file>NES - Battle City JPN - General Sprites.png</file>
         <file>Player1.qml</file>
+        <file>Bullet.qml</file>
     </qresource>
 </RCC>

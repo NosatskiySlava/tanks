@@ -13,7 +13,7 @@ void GameManager::update() {
 }
 
 void GameManager::customEvent(QEvent *e) {
-    if (UpdateEvent* ue = dynamic_cast<UpdateEvent*>(e)) {
+    if (dynamic_cast<UpdateEvent*>(e)) {
         update();
     }
 }

@@ -9,6 +9,7 @@
 #include <gameproperties.h>
 #include <gamemanager.h>
 #include <inputmanager.h>
+#include <common.h>
 
 int main(int argc, char *argv[])
 {
@@ -22,6 +23,8 @@ int main(int argc, char *argv[])
     QObject::connect(&inputManager, &InputManager::rightPressed, tanksField.player1().get(), &Tank::moveRight);
     QObject::connect(&inputManager, &InputManager::upPressed, tanksField.player1().get(), &Tank::moveUp);
     QObject::connect(&inputManager, &InputManager::downPressed, tanksField.player1().get(), &Tank::moveDown);
+
+    Common::RegisterCommonTypes();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("Props", &props);

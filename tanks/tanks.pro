@@ -9,7 +9,9 @@ SOURCES += main.cpp \
     Model/tanksfield.cpp \
     gameproperties.cpp \
     gamemanager.cpp \
-    inputmanager.cpp
+    inputmanager.cpp \
+    Model/bullet.cpp \
+    common.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,5 +27,7 @@ HEADERS += \
     Model/tanksfield.h \
     gameproperties.h \
     gamemanager.h \
-    inputmanager.h
+    inputmanager.h \
+    Model/bullet.h \
+    common.h
 
