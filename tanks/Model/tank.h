@@ -3,7 +3,12 @@
 
 #include <QObject>
 
+#include <memory>
+
 #include <postion.h>
+#include <common.h>
+
+class Bullet;
 
 class Tank: public QObject {
 Q_OBJECT
@@ -18,6 +23,7 @@ public:
     void moveDown();
     void moveLeft();
     void moveRight();
+    void makeShot();
 
     int x() const;
     int y() const;
@@ -29,9 +35,11 @@ signals:
     void movedRight();
     void movedUp();
     void movedDown();
+    void shot(std::shared_ptr<Bullet>);
 
 private:
     Position m_pos;
+    Common::EDirection::Type m_dir;
 };
 
 #endif // TANK_H

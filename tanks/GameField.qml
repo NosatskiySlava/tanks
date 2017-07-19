@@ -43,6 +43,11 @@ Rectangle {
              onMovedUp: player1.jumpTo("moveUp");
              onMovedDown: player1.jumpTo("moveDown");
          }
+
+        Connections {
+            target: TanksField
+            onBulletAdded: console.log("Cha Cha cha");
+        }
     }
 }
 

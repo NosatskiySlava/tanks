@@ -16,6 +16,7 @@ signals:
     void rightPressed();
     void downPressed();
     void upPressed();
+    void spacePressed();
 };
 
 #endif // INPUTMANAGER_H

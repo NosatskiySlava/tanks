@@ -18,8 +18,11 @@ void InputManager::executeCommand(Qt::Key i_key) {
     case Qt::Key_Down:
         emit downPressed();
         break;
+    case Qt::Key_Space:
+        emit spacePressed();
     default:
         break;
     }
 }
+
 

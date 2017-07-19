@@ -1,9 +1,13 @@
 #include "tank.h"
 
 #include <gameproperties.h>
+#include <memory>
 
-Tank::Tank(QObject* p):
-QObject(p)
+#include <Model/bullet.h>
+
+Tank::Tank(QObject* p)
+    : QObject(p)
+    , m_dir(Common::EDirection::UP)
 {
 }
 
@@ -17,6 +21,7 @@ int Tank::y() const {
 
 void Tank::moveUp()
 {
+    m_dir = Common::EDirection::UP;
     if (m_pos.y == 0) {
         emit movedUp();
         return;
@@ -29,6 +34,7 @@ void Tank::moveUp()
 
 void Tank::moveDown()
 {
+    m_dir = Common::EDirection::DOWN;
     if (m_pos.y == GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
         emit movedDown();
         return;
@@ -41,6 +47,7 @@ void Tank::moveDown()
 
 void Tank::moveLeft()
 {
+    m_dir = Common::EDirection::LEFT;
     if (m_pos.x == 0) {
         emit movedLeft();
         return;
@@ -53,6 +60,7 @@ void Tank::moveLeft()
 
 void Tank::moveRight()
 {
+    m_dir = Common::EDirection::RIGHT;
     if (m_pos.x == (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
         emit movedRight();
         return;
@@ -61,5 +69,11 @@ void Tank::moveRight()
     ++m_pos.x;
     emit xChanged();
     emit movedRight();
+}
+
+void Tank::makeShot()
+{
+    std::shared_ptr<Bullet> bullet(new Bullet(m_pos, m_dir));
+    emit shot(bullet);
 }
 
