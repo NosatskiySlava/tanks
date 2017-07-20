@@ -3,7 +3,7 @@
         <file>main.qml</file>
         <file>GameField.qml</file>
         <file>NES - Battle City JPN - General Sprites.png</file>
-        <file>Player1.qml</file>
         <file>Bullet.qml</file>
+        <file>Tank.qml</file>
     </qresource>
 </RCC>

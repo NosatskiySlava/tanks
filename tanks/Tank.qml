@@ -3,6 +3,8 @@ import QtQuick 2.0
 SpriteSequence {
     id: root
 
+    property int spritePositionY
+
     width: Props.tankImageSize
     height: Props.tankImageSize
 
@@ -14,6 +16,8 @@ SpriteSequence {
             frameWidth: Props.tankIconSize
             frameHeight: Props.tankIconSize
 
+            frameY: spritePositionY * Props.tankIconSize
+
             frameSync: true
 
             source: "qrc:/NES - Battle City JPN - General Sprites.png"
@@ -23,6 +27,8 @@ SpriteSequence {
             frameCount: 2
             frameWidth: Props.tankIconSize
             frameHeight: Props.tankIconSize
+
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -36,6 +42,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 4 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -48,6 +55,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 4 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -61,6 +69,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 6 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -73,6 +82,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 6 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -87,6 +97,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 2 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 
@@ -99,6 +110,7 @@ SpriteSequence {
             frameHeight: Props.tankIconSize
 
             frameX: 2 * Props.tankIconSize
+            frameY: spritePositionY * Props.tankIconSize
 
             frameSync: true
 

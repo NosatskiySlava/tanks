@@ -28,8 +28,10 @@ Rectangle {
             Input.executeCommand(event.key);
         }
 
-        Player1 {
+        Tank {
             id: player1
+
+            spritePositionY: 0
 
             x: TankPlayer1.x
             y: TankPlayer1.y
@@ -47,6 +49,12 @@ Rectangle {
             target: TanksField
             onBulletAdded: {
                 var component = Qt.createComponent("Bullet.qml");
+                if( component.status != Component.Ready )
+                {
+                    if( component.status == Component.Error )
+                        console.debug("Error:"+ component.errorString() );
+                    return;
+                }
                 var bulletImage = component.createObject(tanksField, {"bulletData": bullet, "rotation": bullet.dir == Direction.DOWN  ? 180 :
                                                                                                                  bullet.dir == Direction.LEFT  ? -90 :
                                                                                                                  bullet.dir == Direction.RIGHT ? 90  :

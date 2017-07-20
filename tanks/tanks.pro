@@ -31,3 +31,5 @@ HEADERS += \
     Model/bullet.h \
     common.h
 
+DISTFILES +=
+
