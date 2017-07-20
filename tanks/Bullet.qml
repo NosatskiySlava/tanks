@@ -1,7 +1,15 @@
 import QtQuick 2.0
 
+import model.bullet 1.0
+
 SpriteSequence {
     id: root
+
+    //TODO: assigne defaul value
+    property var bulletData
+
+    x: bulletData.x //TODO: check if bulletData is assigned
+    y: bulletData.y
 
     width: Props.bulletImageWidth
     height: Props.bulletImageHeight
@@ -21,4 +29,11 @@ SpriteSequence {
             source: "qrc:/NES - Battle City JPN - General Sprites.png"
         }
     ]
+
+    Connections {
+        target: null
+        onHit: {
+            destroy()
+        }
+    }
 }

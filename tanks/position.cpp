@@ -1,6 +1,8 @@
 #include "postion.h"
 
-Position::Position() {
-    x = 0;
-    y = 0;
+Position::Position(int i_x, int i_y)
+    : x(i_x)
+    , y(i_y)
+{
+
 }

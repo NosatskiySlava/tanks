@@ -27,6 +27,7 @@ public:
 signals:
     void xChanged();
     void yChanged();
+    void hit();
 
 private:
     Common::EDirection::Type m_dir;

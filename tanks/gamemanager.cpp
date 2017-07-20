@@ -44,6 +44,7 @@ GameManager::GameManager(QObject *parent)
 }
 
 void GameManager::update() {
+    m_tanksField->update();
     QGuiApplication::instance()->postEvent(this, new UpdateEvent());
 }
 

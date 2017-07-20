@@ -19,6 +19,7 @@ public:
     const std::shared_ptr<Tank> player1() const;
 
     void addBullet(const std::shared_ptr<Bullet>&);
+    void update();
 
 signals:
     void bulletAdded(Bullet* bullet);

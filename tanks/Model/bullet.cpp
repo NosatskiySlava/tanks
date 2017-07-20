@@ -1,5 +1,7 @@
 #include "bullet.h"
 
+#include <gameproperties.h>
+
 #include <QtGlobal>
 #include <QtDebug>
 
@@ -33,6 +35,7 @@ void Bullet::move() {
         emit yChanged();
         break;
     default:
+        Q_ASSERT_X(false, "movement of bullet", "Direction is not set");
         break;
     }
 }
@@ -45,8 +48,7 @@ int Bullet::y() const {
     return m_pos.y;
 }
 
-Common::EDirection::Type Bullet::dir() const
-{
+Common::EDirection::Type Bullet::dir() const {
     return m_dir;
 }
 

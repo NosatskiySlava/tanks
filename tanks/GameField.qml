@@ -1,6 +1,8 @@
 import QtQuick 2.0
 
 import model.bullet 1.0
+import CommonTypes 1.0
+
 
 Rectangle {
     id: root
@@ -33,11 +35,6 @@ Rectangle {
             y: TankPlayer1.y
         }
 
-        Bullet {
-            x: 160
-            y: 100
-        }
-
         Connections  {
              target: TankPlayer1
              onMovedLeft: player1.jumpTo("moveLeft");
@@ -49,7 +46,14 @@ Rectangle {
         Connections {
             target: TanksField
             onBulletAdded: {
-
+                var component = Qt.createComponent("Bullet.qml");
+                var bulletImage = component.createObject(tanksField, {"bulletData": bullet, "rotation": bullet.dir == Direction.DOWN  ? 180 :
+                                                                                                                 bullet.dir == Direction.LEFT  ? -90 :
+                                                                                                                 bullet.dir == Direction.RIGHT ? 90  :
+                                                                                                                 0});
+                if (bulletImage == null) {
+                    console.log("Error creating bullet");
+                }
             }
         }
     }

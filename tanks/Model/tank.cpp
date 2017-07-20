@@ -5,6 +5,35 @@
 
 #include <Model/bullet.h>
 
+namespace {
+    Position calculateBulletPosition(const Position& i_tankPos, Common::EDirection::Type i_tankDirection) {
+        Position result;
+
+        switch (i_tankDirection) {
+        case Common::EDirection::UP :
+            result.x = i_tankPos.x + GameProperties::tankImageSize()/2 - 4;
+            result.y = i_tankPos.y - 4;
+            break;
+        case Common::EDirection::DOWN :
+            result.x = i_tankPos.x + GameProperties::tankImageSize()/2 - 4;
+            result.y = i_tankPos.y + GameProperties::tankImageSize();
+            break;
+        case Common::EDirection::LEFT :
+            result.x = i_tankPos.x -  4;
+            result.y = i_tankPos.y + GameProperties::tankImageSize()/2 - GameProperties::bulletIconHeight()/2 - 3;
+            break;
+        case Common::EDirection::RIGHT :
+            result.x = i_tankPos.x + GameProperties::tankImageSize();
+            result.y = i_tankPos.y + GameProperties::tankImageSize()/2 - GameProperties::bulletIconHeight()/2 - 3;
+            break;
+        default:
+            break;
+        }
+
+        return result;
+    }
+}
+
 Tank::Tank(QObject* p)
     : QObject(p)
     , m_dir(Common::EDirection::UP)
@@ -73,7 +102,7 @@ void Tank::moveRight()
 
 void Tank::makeShot()
 {
-    std::shared_ptr<Bullet> bullet(new Bullet(m_pos, m_dir));
+    std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(m_pos, m_dir), m_dir));
     emit shot(bullet);
 }
 
