@@ -1,6 +1,6 @@
 #include "bullet.h"
 
-#include <gameproperties.h>
+#include <Common/gameproperties.h>
 
 #include <QtGlobal>
 #include <QtDebug>

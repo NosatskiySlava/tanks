@@ -1,9 +1,9 @@
+#include "bullet.h"
 #include "tank.h"
 
-#include <gameproperties.h>
-#include <memory>
+#include <Common/gameproperties.h>
 
-#include <Model/bullet.h>
+#include <memory>
 
 namespace {
     Position calculateBulletPosition(const Position& i_tankPos, Common::EDirection::Type i_tankDirection) {

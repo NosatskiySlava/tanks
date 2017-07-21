@@ -1,14 +1,15 @@
+#include "typeregistrator.h"
+
+#include <Controller/gamemanager.h>
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-
-#include <gamemanager.h>
-#include <common.h>
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    Common::RegisterCommonTypes();
+    TypeRegistrator::registerTypes();
     QQmlApplicationEngine engine;
 
     auto manager = GameManager::instance();

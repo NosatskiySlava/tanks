@@ -1,11 +1,9 @@
-#include "tanksfield.h"
-
 #include "bullet.h"
 #include "tank.h"
+#include "tanksfield.h"
 
-#include <gameproperties.h>
+#include <Common/gameproperties.h>
 
-#include <qqml.h>
 
 namespace  {
     bool isHit(std::shared_ptr<Bullet> i_bullet) {
@@ -25,7 +23,6 @@ TanksField::TanksField()
   : m_player1(new Tank())
 {
     connect(m_player1.get(), &Tank::shot, this, &TanksField::addBullet);
-    qmlRegisterType<Bullet>("model.bullet", 1, 0, "huy");
 }
 
 const std::shared_ptr<Tank> TanksField::player1() const {

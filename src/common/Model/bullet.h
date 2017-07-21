@@ -1,10 +1,10 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include <QObject>
+#include <Common/common.h>
+#include <Common/postion.h>
 
-#include <common.h>
-#include <postion.h>
+#include <QObject>
 
 class Bullet : public QObject {
     Q_OBJECT

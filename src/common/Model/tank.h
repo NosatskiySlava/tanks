@@ -1,12 +1,11 @@
 #ifndef TANK_H
 #define TANK_H
 
+#include <Common/postion.h>
+#include <Common/common.h>
+
 #include <QObject>
-
 #include <memory>
-
-#include <postion.h>
-#include <common.h>
 
 class Bullet;
 

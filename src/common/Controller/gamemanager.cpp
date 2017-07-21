@@ -1,10 +1,9 @@
 #include "gamemanager.h"
+#include "inputmanager.h"
 
-#include <Model/tanksfield.h>
+#include <Common/gameproperties.h>
 #include <Model/tank.h>
-
-#include <inputmanager.h>
-#include <gameproperties.h>
+#include <Model/tanksfield.h>
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -37,8 +36,6 @@ GameManager::GameManager(QObject *parent)
     QObject::connect(m_inputManager.get(), &InputManager::upPressed, m_tanksField->player1().get(), &Tank::moveUp);
     QObject::connect(m_inputManager.get(), &InputManager::downPressed, m_tanksField->player1().get(), &Tank::moveDown);
     QObject::connect(m_inputManager.get(), &InputManager::spacePressed, m_tanksField->player1().get(), &Tank::makeShot);
-
-
 
     QGuiApplication::instance()->postEvent(this, new UpdateEvent());
 }

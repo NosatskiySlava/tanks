@@ -19,8 +19,6 @@ namespace Common {
         };
         Q_ENUMS(Type)
     };
-
-    void RegisterCommonTypes();
 }
 
 #endif // COMMON_H
