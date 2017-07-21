@@ -5,6 +5,6 @@ install:
   - sudo apt-get install -y qt5-default qtdeclarative5-dev qttools5-dev-tools #install necessary Qt file
 
 script:
-  - qmake "DESTDIR+=build" tanks.pro
+  - qmake tanks.pro
   - make
   - ./src/tests/tst_tankstest
