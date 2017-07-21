@@ -12,5 +12,3 @@ script:
   - qmake "DESTDIR+=build" tanks.pro
   - make
   - ./build/src/tests/tst_tankstest
-
-language: cpp
