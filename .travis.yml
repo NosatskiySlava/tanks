@@ -1,10 +1,15 @@
 sudo: required
 dist: trusty
 
+before_install:
+  - pip install --user cpp-coveralls
+
 install:
   - sudo apt-get install -y qt5-default qtdeclarative5-dev qttools5-dev-tools #install necessary Qt file
 
 script:
   - qmake tanks.pro
-  - make
-  - ./src/tests/tst_tankstest
+  - ./configure --enable-gcov && make && make check
+
+  after_success:
+  - coveralls --exclude lib --exclude tests --gcov-options '\-lp'
