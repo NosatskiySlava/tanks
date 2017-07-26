@@ -11,3 +11,6 @@ script:
   - qmake tanks.pro
   - make
   - ./src/tests/tst_tankstest
+
+  after_success:
+  - coveralls
