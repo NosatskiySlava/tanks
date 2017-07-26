@@ -9,4 +9,8 @@ install:
 
 script:
   - qmake tanks.pro
-  - make check
+  - make
+  - ./src/tests/tst_tankstest
+
+  after_success:
+  - coveralls --gcov-options '\-lp'

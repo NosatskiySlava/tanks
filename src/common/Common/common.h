@@ -2,7 +2,6 @@
 #define COMMON_H
 
 #include <QObject>
-#include <qqml.h>
 
 namespace Common {
     class EDirection: public QObject {

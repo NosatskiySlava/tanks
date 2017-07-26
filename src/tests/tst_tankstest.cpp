@@ -1,6 +1,9 @@
 #include <QString>
 #include <QtTest>
 
+#include <Model/tank.h>
+
+
 class TanksTest : public QObject
 {
     Q_OBJECT
@@ -18,7 +21,8 @@ TanksTest::TanksTest()
 
 void TanksTest::testCase1()
 {
-    QVERIFY2(true, "Failure");
+    Tank t;
+    QVERIFY2(t.x() == 0, "Failure");
 }
 
 QTEST_APPLESS_MAIN(TanksTest)
