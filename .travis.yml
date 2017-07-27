@@ -1,8 +1,13 @@
 sudo: required
 dist: trusty
 
-before_install:
-  - pip install --user cpp-coveralls
+env:
+  global:
+    - CC_TEST_REPORTER_ID=5acdc81cd04e880945a2389907e11ad4b0ceaf38f86a4bf7cca33441c5e54fcf
+    
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 
 install:
   - sudo apt-get install -y qt5-default qtdeclarative5-dev qttools5-dev-tools #install necessary Qt file
@@ -11,6 +16,4 @@ script:
   - qmake tanks.pro
   - make
   - ./src/tests/tst_tankstest
-
-after_success:
-  - coveralls -E /usr/.+
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
