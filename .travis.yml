@@ -13,4 +13,4 @@ script:
   - ./src/tests/tst_tankstest
 
 after_success:
-  - coveralls  -v
+  - coveralls  --verbose
