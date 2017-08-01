@@ -1,19 +1,6 @@
-#include <QString>
-#include <QtTest>
+#include "tst_tankstest.h"
 
 #include <Model/tank.h>
-
-
-class TanksTest : public QObject
-{
-    Q_OBJECT
-
-public:
-    TanksTest();
-
-private Q_SLOTS:
-    void testCase1();
-};
 
 TanksTest::TanksTest()
 {
@@ -25,6 +12,5 @@ void TanksTest::testCase1()
     QVERIFY2(t.x() == 0, "Failure");
 }
 
-QTEST_APPLESS_MAIN(TanksTest)
+static TanksTest tt;
 
-#include "tst_tankstest.moc"

@@ -28,7 +28,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 LIBS += -lgcov
 QMAKE_CXXFLAGS += -g -Wall -fprofile-arcs -ftest-coverage -O0
 
-SOURCES += tst_tankstest.cpp
+SOURCES += tst_tankstest.cpp \
+    tests.cpp \
+    tst_bullet.cpp \
+    testsuits.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../common/release/ -lcommon
@@ -43,3 +46,8 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../comm
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../common/release/common.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/../common/debug/common.lib
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../common/libcommon.a
+
+HEADERS += \
+    tst_tankstest.h \
+    tst_bullet.h \
+    testsuits.h
