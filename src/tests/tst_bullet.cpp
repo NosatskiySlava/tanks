@@ -6,10 +6,18 @@ BulletTest::BulletTest()
 {
 }
 
-void BulletTest::testCase1()
+void BulletTest::initialDefaultPosition()
 {
     Bullet b;
-    QVERIFY2(b.x() == 1, "Failure");
+    QCOMPARE(b.x(), 0);
+    QCOMPARE(b.y(), 0);
+}
+
+void BulletTest::initialPosition() {
+    Bullet b(Position(10, 10), Common::EDirection::DOWN);
+    QCOMPARE(b.x(), 10);
+    QCOMPARE(b.y(), 10);
+    QCOMPARE(b.dir(), Common::EDirection::DOWN);
 }
 
 static BulletTest bt;

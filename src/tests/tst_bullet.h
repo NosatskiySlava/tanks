@@ -13,7 +13,8 @@ public:
     BulletTest();
 
 private slots:
-    void testCase1();
+    void initialDefaultPosition();
+    void initialPosition();
 };
 
 #endif // TST_BULLET_H

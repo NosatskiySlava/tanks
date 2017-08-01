@@ -1,7 +1,5 @@
 #include "testsuits.h"
 
-#include <QDebug>
-
 TestSuits::TestSuits() : QObject()
 {
     suits().push_back(this);
