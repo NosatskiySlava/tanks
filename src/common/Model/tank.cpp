@@ -40,6 +40,14 @@ Tank::Tank(QObject* p)
 {
 }
 
+Tank::Tank(const Position& i_pos, Common::EDirection::Type i_dir, QObject* parent)
+    : QObject(parent)
+    , m_pos(i_pos)
+    , m_dir(i_dir)
+{
+
+}
+
 int Tank::x() const {
     return m_pos.x;
 }

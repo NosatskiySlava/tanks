@@ -17,6 +17,7 @@ Q_OBJECT
 
 public:
     explicit Tank(QObject* parent = nullptr);
+    Tank(const Position& i_pos, Common::EDirection::Type i_dir = Common::EDirection::UP, QObject* parent = nullptr);
 
     void moveUp();
     void moveDown();
