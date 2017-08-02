@@ -4,11 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += testlib
-
 QT       -= gui
 
-TARGET = tst_tankstest
+TARGET = tests
 CONFIG   += console
 CONFIG   -= app_bundle
 CONFIG += c++11
@@ -31,7 +29,8 @@ QMAKE_CXXFLAGS += -g -Wall -fprofile-arcs -ftest-coverage -O0
 SOURCES += tst_tankstest.cpp \
     tests.cpp \
     tst_bullet.cpp \
-    testsuits.cpp
+    testsuits.cpp \
+    tst_tank.cpp
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../common/release/ -lcommon
@@ -51,3 +50,26 @@ HEADERS += \
     tst_tankstest.h \
     tst_bullet.h \
     testsuits.h
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/release/ -lgtest
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/debug/ -lgtest
+else:unix: LIBS += -L$$PWD/../3rdParty/gtest/ -lgtest
+
+INCLUDEPATH += $$PWD/../3rdParty/gtest
+DEPENDPATH += $$PWD/../3rdParty/gtest
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/release/libgtest.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/debug/libgtest.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/release/gtest.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/debug/gtest.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/libgtest.a
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/release/ -lgtest_main
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/debug/ -lgtest_main
+else:unix: LIBS += -L$$PWD/../3rdParty/gtest/ -lgtest_main
+
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/release/libgtest_main.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/debug/libgtest_main.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/release/gtest_main.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/debug/gtest_main.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/libgtest_main.a

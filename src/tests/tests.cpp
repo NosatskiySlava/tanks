@@ -1,17 +1,7 @@
-#include "tst_tankstest.h"
-#include "tst_bullet.h"
-
-#include "testsuits.h"
-
-#include <QtTest>
+#include <gtest/gtest.h>
 
 int main(int argc, char *argv[])
 {
-    int failedSuitsCount = 0;
-    for(auto suit: TestSuits::suits()) {
-        if (QTest::qExec(suit, argc, argv))
-            ++failedSuitsCount;
-    }
-
-    return failedSuitsCount;
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
