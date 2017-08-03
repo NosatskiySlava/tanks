@@ -43,28 +43,28 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../common/libcommon.a
 
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/googlemock/release/ -lgmock
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/googlemock/debug/ -lgmock
-else:unix: LIBS += -L$$PWD/../3rdParty/gtest/googlemock/ -lgmock
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/release/ -lgmock
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/debug/ -lgmock
+else:unix: LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/ -lgmock
 
-INCLUDEPATH += $$PWD/../3rdParty/gtest/googlemock
-DEPENDPATH += $$PWD/../3rdParty/gtest/googlemock
+INCLUDEPATH += $$PWD/../3rdParty/googletest/googlemock/include
+DEPENDPATH += $$PWD/../3rdParty/googletest/build/googlemock
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/release/libgmock.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/debug/libgmock.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/release/gmock.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/debug/gmock.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/libgmock.a
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/release/libgmock.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/debug/libgmock.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/release/gmock.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/debug/gmock.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/libgmock.a
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/googlemock/gtest/release/ -lgtest
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/gtest/googlemock/gtest/debug/ -lgtest
-else:unix: LIBS += -L$$PWD/../3rdParty/gtest/googlemock/gtest/ -lgtest
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/gtest/release/ -lgtest
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/gtest/debug/ -lgtest
+else:unix: LIBS += -L$$PWD/../3rdParty/googletest/build/googlemock/gtest/ -lgtest
 
-INCLUDEPATH += $$PWD/../3rdParty/gtest/googlemock/gtest
-DEPENDPATH += $$PWD/../3rdParty/gtest/googlemock/gtest
+INCLUDEPATH += $$PWD/../3rdParty/googletest/googletest/include
+DEPENDPATH += $$PWD/../3rdParty/googletest/build/googlemock/gtest
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/gtest/release/libgtest.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/gtest/debug/libgtest.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/gtest/release/gtest.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/gtest/debug/gtest.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/gtest/googlemock/gtest/libgtest.a
+win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/gtest/release/libgtest.a
+else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/gtest/debug/libgtest.a
+else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/gtest/release/gtest.lib
+else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/gtest/debug/gtest.lib
+else:unix: PRE_TARGETDEPS += $$PWD/../3rdParty/googletest/build/googlemock/gtest/libgtest.a

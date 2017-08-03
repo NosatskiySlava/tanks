@@ -1,20 +1,15 @@
 sudo: required
 dist: trusty
 
-before_install:
-  # C++14
-  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-  - sudo apt-get update -qq
-
 install:
-  # C++14
-  - sudo apt-get install -qq g++-6
-  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
   - sudo apt-get install -y qt5-default qtdeclarative5-dev qttools5-dev-tools #install necessary Qt file
 
 script:
-  - sudo unlink /usr/bin/gcc && sudo ln -s /usr/bin/gcc-6 /usr/bin/gcc
-  - g++ -v
+  - mkdir src/3rdParty/googletest/build
+  - cd src/3rdParty/googletest/build
+  - cmake ../
+  - make
+  - cd ../../../../
   - qmake tanks.pro
   - make
   - ./src/tests/tests
