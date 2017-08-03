@@ -1,0 +1,4 @@
+/home/vnosatskyi/googletest/googletest/build/googlemock/CMakeFiles/gmock_main.dir
+/home/vnosatskyi/googletest/googletest/build/googlemock/CMakeFiles/gmock.dir
+/home/vnosatskyi/googletest/googletest/build/googlemock/gtest/CMakeFiles/gtest_main.dir
+/home/vnosatskyi/googletest/googletest/build/googlemock/gtest/CMakeFiles/gtest.dir

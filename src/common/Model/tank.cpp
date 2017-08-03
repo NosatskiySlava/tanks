@@ -72,7 +72,7 @@ void Tank::moveUp()
 void Tank::moveDown()
 {
     m_dir = Common::EDirection::DOWN;
-    if (m_pos.y == GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
+    if (m_pos.y >= GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
         emit movedDown();
         return;
     }
@@ -98,7 +98,7 @@ void Tank::moveLeft()
 void Tank::moveRight()
 {
     m_dir = Common::EDirection::RIGHT;
-    if (m_pos.x == (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
+    if (m_pos.x >= (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
         emit movedRight();
         return;
     }
