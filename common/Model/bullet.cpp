@@ -3,7 +3,6 @@
 #include <Common/gameproperties.h>
 
 #include <QtGlobal>
-#include <QtDebug>
 
 Bullet::Bullet(QObject *parent) : QObject(parent) {
 
@@ -53,6 +52,5 @@ Common::EDirection::Type Bullet::dir() const {
 }
 
 Bullet::~Bullet() {
-    qDebug() << "~Bullet()";
 }
 

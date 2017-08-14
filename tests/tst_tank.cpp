@@ -1,7 +1,26 @@
 #include <gtest/gtest.h>
 
 #include <Common/gameproperties.h>
+#include <Model/bullet.h>
 #include <Model/tank.h>
+
+namespace {
+//TODO: get rid of helper and including of moc file. Use advanced testing framework
+    class ShotHelper: public QObject {
+        Q_OBJECT
+    public slots:
+        void onShotMade(const std::shared_ptr<Bullet>& i_bullet) {
+            m_bullet = i_bullet;
+        }
+
+        std::shared_ptr<Bullet> bullet() {
+            return m_bullet;
+        }
+
+    private:
+        std::shared_ptr<Bullet> m_bullet;
+    };
+}
 
 TEST(tst_tank, defaultInitialization) {
     Tank tank;
@@ -87,3 +106,50 @@ TEST(tst_tank, tankMoveOutOfRightBound) {
     ASSERT_EQ(tank.x(), GameProperties::fieldWidth());
     ASSERT_EQ(tank.y(), 0);
 }
+
+TEST(tst_tank, tankMakesShotUP) {
+    Tank tank(Position(36, 36), Common::EDirection::UP);
+    ShotHelper helper;
+
+    QObject::connect(&tank, SIGNAL(shot(std::shared_ptr<Bullet>)), &helper, SLOT(onShotMade(const std::shared_ptr<Bullet>&)));
+    tank.makeShot();
+
+    ASSERT_EQ(helper.bullet()->x(), 48);
+    ASSERT_EQ(helper.bullet()->y(), 32);
+}
+
+TEST(tst_tank, tankMakesShotRIGHT) {
+    Tank tank(Position(36, 36), Common::EDirection::RIGHT);
+    ShotHelper helper;
+
+    QObject::connect(&tank, SIGNAL(shot(std::shared_ptr<Bullet>)), &helper, SLOT(onShotMade(const std::shared_ptr<Bullet>&)));
+    tank.makeShot();
+
+    ASSERT_EQ(helper.bullet()->x(), 68);
+    ASSERT_EQ(helper.bullet()->y(), 47);
+}
+
+TEST(tst_tank, tankMakesShotDOWN) {
+    Tank tank(Position(36, 36), Common::EDirection::DOWN);
+    ShotHelper helper;
+
+    QObject::connect(&tank, SIGNAL(shot(std::shared_ptr<Bullet>)), &helper, SLOT(onShotMade(const std::shared_ptr<Bullet>&)));
+    tank.makeShot();
+
+    ASSERT_EQ(helper.bullet()->x(), 48);
+    ASSERT_EQ(helper.bullet()->y(), 68);
+}
+
+TEST(tst_tank, tankMakesShotLEFT) {
+    Tank tank(Position(36, 36), Common::EDirection::LEFT);
+    ShotHelper helper;
+
+    QObject::connect(&tank, SIGNAL(shot(std::shared_ptr<Bullet>)), &helper, SLOT(onShotMade(const std::shared_ptr<Bullet>&)));
+    tank.makeShot();
+
+    ASSERT_EQ(helper.bullet()->x(), 32);
+    ASSERT_EQ(helper.bullet()->y(), 47);
+}
+
+
+#include <tst_tank.moc>

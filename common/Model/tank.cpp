@@ -6,6 +6,7 @@
 #include <memory>
 
 namespace {
+    //TODO: get rid of magic numbers in calculation of bullet position
     Position calculateBulletPosition(const Position& i_tankPos, Common::EDirection::Type i_tankDirection) {
         Position result;
 
