@@ -12,4 +12,4 @@ script:
   - make
   - ./tests/tests
   - cd ..
-  - coveralls
+  - coveralls -E build/*
