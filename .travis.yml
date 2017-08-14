@@ -11,4 +11,5 @@ script:
   - cmake ../
   - make
   - ./tests/tests
-  - coveralls -b "../" -e "*/usr/include/*"
+  - cd ..
+  - coveralls -E "*/usr/include/*"
