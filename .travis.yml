@@ -12,4 +12,4 @@ script:
   - make
   - ./tests/tests
   - cd ..
-  - coveralls --exclude-pattern ".*/3rdParty/*"
+  - coveralls --exclude-pattern ".*/3rdParty/*" --exclude-pattern ".*/tanks/build/*" --exclude-pattern ".*/tanks/app/*" --exclude-pattern ".*/tanks/tests/*"
