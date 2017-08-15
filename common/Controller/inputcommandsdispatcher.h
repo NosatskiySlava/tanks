@@ -3,11 +3,11 @@
 
 #include <QObject>
 
-class InputManager : public QObject
+class InputCommandsDispatcher : public QObject
 {
     Q_OBJECT
 public:
-    explicit InputManager(QObject *parent = 0);
+    explicit InputCommandsDispatcher(QObject *parent = 0);
 
     Q_INVOKABLE void executeCommand(Qt::Key i_key);
 

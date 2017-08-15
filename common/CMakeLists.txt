@@ -14,9 +14,7 @@ set(CMAKE_AUTOMOC ON)
 
 # Find the QtWidgets library
 find_package(Qt5Quick)
-find_package(Qt5Qml)
 
 add_library(common ${SRC})
 
 target_link_libraries(common Qt5::Quick)
-target_link_libraries(common Qt5::Qml)

@@ -1,10 +1,10 @@
-#include "inputmanager.h"
+#include "inputcommandsdispatcher.h"
 
-InputManager::InputManager(QObject *parent) : QObject(parent) {
+InputCommandsDispatcher::InputCommandsDispatcher(QObject *parent) : QObject(parent) {
 
 }
 
-void InputManager::executeCommand(Qt::Key i_key) {
+void InputCommandsDispatcher::executeCommand(Qt::Key i_key) {
     switch (i_key) {
     case Qt::Key_Left:
         emit leftPressed();

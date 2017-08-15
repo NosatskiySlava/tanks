@@ -8,7 +8,7 @@
 #include <list>
 
 class GameProperties;
-class InputManager;
+class InputCommandsDispatcher;
 class TanksField;
 
 class QQmlApplicationEngine;
@@ -31,7 +31,7 @@ private:
 
 private:
     std::shared_ptr<TanksField>     m_tanksField;
-    std::shared_ptr<InputManager>   m_inputManager;
+    std::shared_ptr<InputCommandsDispatcher>   m_inputManager;
     std::shared_ptr<GameProperties> m_props;
 };
 
