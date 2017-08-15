@@ -8,6 +8,7 @@ TEST(tst_bullet, moveUp) {
 
    ASSERT_EQ(bullet.x(), 10);
    ASSERT_EQ(bullet.y(), 9);
+   ASSERT_EQ(bullet.dir(), Common::EDirection::UP);
 }
 
 TEST(tst_bullet, moveLeft) {
@@ -16,6 +17,7 @@ TEST(tst_bullet, moveLeft) {
 
    ASSERT_EQ(bullet.x(), 9);
    ASSERT_EQ(bullet.y(), 10);
+   ASSERT_EQ(bullet.dir(), Common::EDirection::LEFT);
 }
 
 TEST(tst_bullet, moveDown) {
@@ -24,6 +26,7 @@ TEST(tst_bullet, moveDown) {
 
    ASSERT_EQ(bullet.x(), 10);
    ASSERT_EQ(bullet.y(), 11);
+   ASSERT_EQ(bullet.dir(), Common::EDirection::DOWN);
 }
 
 TEST(tst_bullet, moveRight) {
@@ -32,4 +35,5 @@ TEST(tst_bullet, moveRight) {
 
    ASSERT_EQ(bullet.x(), 11);
    ASSERT_EQ(bullet.y(), 10);
+   ASSERT_EQ(bullet.dir(), Common::EDirection::RIGHT);
 }
