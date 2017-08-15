@@ -13,18 +13,18 @@ class TanksField;
 
 class QQmlApplicationEngine;
 
-class GameManager : public QObject
+class GameWorld : public QObject
 {
     Q_OBJECT
 
 public:
-    static std::shared_ptr<GameManager> instance();
-    void exposeObjects(QQmlApplicationEngine& engine);
+    static std::shared_ptr<GameWorld> instance();
+    void exposeObjectsToQml(QQmlApplicationEngine& engine);
 
 private:
-    explicit GameManager(QObject *parent = 0);
-    GameManager(GameManager&);
-    GameManager& operator=(GameManager&);
+    explicit GameWorld(QObject *parent = 0);
+    GameWorld(GameWorld&);
+    GameWorld& operator=(GameWorld&);
 
     void update();
     virtual void customEvent(QEvent *);

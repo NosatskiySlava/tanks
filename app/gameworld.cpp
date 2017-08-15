@@ -1,6 +1,6 @@
-#include "gamemanager.h"
-#include "inputmanager.h"
+#include "gameworld.h"
 
+#include <Controller/inputmanager.h>
 #include <Common/gameproperties.h>
 #include <Model/tank.h>
 #include <Model/tanksfield.h>
@@ -9,23 +9,15 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
-std::shared_ptr<GameManager> GameManager::instance() {
-    static std::shared_ptr<GameManager> manager(nullptr);
-    if (manager == nullptr) {
-        manager = std::shared_ptr<GameManager>(new GameManager());
+std::shared_ptr<GameWorld> GameWorld::instance() {
+    static std::shared_ptr<GameWorld> world(nullptr);
+    if (world == nullptr) {
+        world = std::shared_ptr<GameWorld>(new GameWorld());
     }
-    return manager;
+    return world;
 }
 
-void GameManager::exposeObjects(QQmlApplicationEngine& engine)
-{
-    engine.rootContext()->setContextProperty("Props", m_props.get());
-    engine.rootContext()->setContextProperty("Input", m_inputManager.get());
-    engine.rootContext()->setContextProperty("TanksField", m_tanksField.get());
-    engine.rootContext()->setContextProperty("TankPlayer1", m_tanksField->player1().get());
-}
-
-GameManager::GameManager(QObject *parent)
+GameWorld::GameWorld(QObject *parent)
     : QObject(parent)
     , m_tanksField(new TanksField())
     , m_inputManager(new InputManager())
@@ -40,15 +32,23 @@ GameManager::GameManager(QObject *parent)
     QGuiApplication::instance()->postEvent(this, new UpdateEvent());
 }
 
-void GameManager::update() {
+void GameWorld::update() {
     m_tanksField->update();
     QGuiApplication::instance()->postEvent(this, new UpdateEvent());
 }
 
-void GameManager::customEvent(QEvent *e) {
+void GameWorld::customEvent(QEvent *e) {
     if (dynamic_cast<UpdateEvent*>(e)) {
         update();
     }
+}
+
+void GameWorld::exposeObjectsToQml(QQmlApplicationEngine& engine)
+{
+    engine.rootContext()->setContextProperty("Props", m_props.get());
+    engine.rootContext()->setContextProperty("Input", m_inputManager.get());
+    engine.rootContext()->setContextProperty("TanksField", m_tanksField.get());
+    engine.rootContext()->setContextProperty("TankPlayer1", m_tanksField->player1().get());
 }
 
 UpdateEvent::UpdateEvent() :
