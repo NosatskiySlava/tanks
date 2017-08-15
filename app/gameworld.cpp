@@ -9,6 +9,16 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 
+namespace  {
+    class UpdateEvent: public QEvent {
+        public:
+            UpdateEvent() :
+                QEvent(Type::User) {
+
+            }
+    };
+}
+
 std::shared_ptr<GameWorld> GameWorld::instance() {
     static std::shared_ptr<GameWorld> world(nullptr);
     if (world == nullptr) {
@@ -51,8 +61,4 @@ void GameWorld::exposeObjectsToQml(QQmlApplicationEngine& engine)
     engine.rootContext()->setContextProperty("TankPlayer1", m_tanksField->player1().get());
 }
 
-UpdateEvent::UpdateEvent() :
-    QEvent(Type::User) {
-
-}
 

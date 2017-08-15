@@ -35,9 +35,4 @@ private:
     std::shared_ptr<GameProperties> m_props;
 };
 
-class UpdateEvent: public QEvent {
-public:
-    UpdateEvent();
-};
-
 #endif // GAMEMANAGER_H
