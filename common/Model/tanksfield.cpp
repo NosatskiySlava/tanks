@@ -38,14 +38,13 @@ void TanksField::update() {
     for (auto bullet: m_bullets) {
         bullet->move();
     }
-    for (auto itr = m_bullets.begin(); itr != m_bullets.end(); ++itr) {
-        auto bullet = *itr;
+    m_bullets.remove_if([](std::shared_ptr<Bullet> bullet) {
         if (isHit(bullet)) {
             emit bullet->hit();
-            itr = ++itr;
-            m_bullets.remove(bullet);
+            return true;
         }
-    }
+        return false;
+    });
 }
 
 
