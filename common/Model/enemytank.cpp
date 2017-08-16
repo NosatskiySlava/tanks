@@ -8,22 +8,6 @@
 #include <QtGlobal>
 
 namespace {
-    Position getDeltaMovement(Common::EDirection::Type direction) {
-        switch(direction) {
-        case Common::EDirection::DOWN:
-            return Position(0, 1);
-        case Common::EDirection::UP:
-            return Position(0, -1);
-        case Common::EDirection::LEFT:
-            return Position(-1, 0);
-        case Common::EDirection::RIGHT:
-            return Position(1, 0);
-        default:
-            Q_ASSERT_X(FALSE, "enemytank.getdeltamovement", "non valid direction was passed");
-            return Position(0, 0);
-        }
-    }
-
     bool isValidPosition(const Position& pos) {
         return (pos.x > 0 && pos.y > 0
                 && pos.x < (GameProperties::fieldWidth() - GameProperties::tankImageSize())
@@ -57,7 +41,6 @@ EnemyTank::EnemyTank(QObject *parent)
 {
 
 }
-
 
 void EnemyTank::makeRandomMove()
 {

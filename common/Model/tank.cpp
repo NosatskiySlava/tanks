@@ -33,22 +33,6 @@ namespace {
 
         return result;
     }
-
-    Position getDeltaMovement(Common::EDirection::Type direction) {
-        switch(direction) {
-        case Common::EDirection::DOWN:
-            return Position(0, 1);
-        case Common::EDirection::UP:
-            return Position(0, -1);
-        case Common::EDirection::LEFT:
-            return Position(-1, 0);
-        case Common::EDirection::RIGHT:
-            return Position(1, 0);
-        default:
-            Q_ASSERT_X(FALSE, "enemytank.getdeltamovement", "non valid direction was passed");
-            return Position(0, 0);
-        }
-    }
 }
 
 Tank::Tank(QObject* p)
@@ -58,10 +42,9 @@ Tank::Tank(QObject* p)
 }
 
 Tank::Tank(const Position& i_pos, Common::EDirection::Type i_dir, QObject* parent)
-    : PositionableObject(parent)
+    : PositionableObject(i_pos, parent)
     , m_dir(i_dir)
 {
-    setPosition(i_pos);
 }
 
 void Tank::moveUp()

@@ -16,18 +16,21 @@ public:
     int x() const;
     int y() const;
 
-    void setX(int x);
-    void setY(int y);
-
-    Position getPosition() const;
-    void setPosition(const Position& pos);
-
 signals:
     void xChanged();
     void yChanged();
 
 protected:
     PositionableObject(QObject* parent = nullptr);
+    PositionableObject(const Position& pos, QObject* parent = nullptr);
+
+    void setX(int x);
+    void setY(int y);
+
+    Position getPosition() const;
+    void setPosition(const Position& pos);
+
+    Position getDeltaMovement(Common::EDirection::Type direction) const;
 
 private:
     Position position;

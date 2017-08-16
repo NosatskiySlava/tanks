@@ -4,34 +4,26 @@
 #include <Common/common.h>
 #include <Common/position.h>
 
-#include <QObject>
+#include "positionableobject.h"
 
-class Bullet : public QObject {
+class Bullet : public PositionableObject {
     Q_OBJECT
 
-    Q_PROPERTY(int x READ x NOTIFY xChanged)
-    Q_PROPERTY(int y READ y NOTIFY yChanged)
     Q_PROPERTY(Common::EDirection::Type dir READ dir CONSTANT)
 
 public:
     explicit Bullet(QObject *parent = 0);
-    explicit Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *parent = 0);
-    ~Bullet();
+    Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *parent = 0);
 
     void move();
 
-    int x() const;
-    int y() const;
     Common::EDirection::Type dir() const;
 
 signals:
-    void xChanged();
-    void yChanged();
     void hit();
 
 private:
     Common::EDirection::Type m_dir;
-    Position                 m_pos;
 };
 
 #endif // BULLET_H
