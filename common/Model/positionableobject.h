@@ -17,6 +17,7 @@ public:
     int y() const;
 
     Position getPosition() const;
+    void setPosition(const Position& pos);
 
 signals:
     void xChanged();

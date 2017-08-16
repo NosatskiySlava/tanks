@@ -17,3 +17,7 @@ int PositionableObject::y() const {
 Position PositionableObject::getPosition() const {
     return position;
 }
+
+void PositionableObject::setPosition(const Position& pos) {
+    position = pos;
+}
