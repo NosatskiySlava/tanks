@@ -1,4 +1,4 @@
-import QtQuick 2.5
+import QtQuick 2.0
 import QtQuick.Window 2.2
 
 Window {
@@ -8,8 +8,6 @@ Window {
 
     width: Props.tankImageSize * 16
     height: Props.tankImageSize * 15
-
-   // flags: Qt.MSWindowsFixedSizeDialogHint
 
     GameField {
         id: gameField
