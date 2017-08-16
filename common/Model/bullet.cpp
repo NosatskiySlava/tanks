@@ -12,7 +12,6 @@ Bullet::Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *par
 , m_dir(dir)
 , m_pos(i_pos)
 {
-    Q_ASSERT_X(m_dir != Common::EDirection::NONE, "Initialization of bullet", "Direction is not set");
 }
 
 void Bullet::move() {

@@ -2,7 +2,7 @@
 #define BULLET_H
 
 #include <Common/common.h>
-#include <Common/postion.h>
+#include <Common/position.h>
 
 #include <QObject>
 
