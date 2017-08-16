@@ -10,7 +10,6 @@ namespace Common {
 
     public:
         enum Type {
-            NONE,
             UP,
             LEFT,
             RIGHT,
