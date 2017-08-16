@@ -16,6 +16,9 @@ public:
     int x() const;
     int y() const;
 
+    void setX(int x);
+    void setY(int y);
+
     Position getPosition() const;
     void setPosition(const Position& pos);
 

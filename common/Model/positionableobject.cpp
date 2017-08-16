@@ -18,6 +18,21 @@ Position PositionableObject::getPosition() const {
     return position;
 }
 
+void PositionableObject::setX(int x) {
+    if (position.x != x) {
+        position.x = x;
+        emit xChanged();
+    }
+}
+
+void PositionableObject::setY(int y) {
+    if (position.y != y) {
+        position.y = y;
+        emit yChanged();
+    }
+}
+
 void PositionableObject::setPosition(const Position& pos) {
-    position = pos;
+    setX(pos.x);
+    setY(pos.y);
 }

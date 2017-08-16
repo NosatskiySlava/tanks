@@ -1,29 +1,29 @@
 #ifndef ENEMYTANKBEHAVIOR
 #define ENEMYTANKBEHAVIOR
 
+#include "positionableobject.h"
+
 #include "Common/common.h"
-#include "Common/position.h"
 
-#include <QObject>
-
-class EnemyTank : public QObject {
+class EnemyTank : public PositionableObject {
     Q_OBJECT
 public:
-    void makeRandomMove(const Position& currentPosition, const Common::EDirection::Type& currentDirection);
+    EnemyTank(QObject* parent = nullptr);
+
+    void makeRandomMove();
     void makeRandomShot();
 
 signals:
-    void directionChanged(Common::EDirection::Type dir);
+    void directionChanged();
     void positionChanged(const Position& pos);
     void shotMade();
 
 private:
-    void makeRandomMove();
     void updatePosition();
     void updateDirection();
+    bool canTankMoveInDirection(Common::EDirection::Type dir);
 
 private:
-    Position tankPosition;
     Common::EDirection::Type tankDirection;
 };
 

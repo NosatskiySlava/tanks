@@ -1,19 +1,17 @@
 #ifndef TANK_H
 #define TANK_H
 
+#include "positionableobject.h"
+
 #include <Common/position.h>
 #include <Common/common.h>
 
-#include <QObject>
 #include <memory>
 
 class Bullet;
 
-class Tank: public QObject {
+class Tank: public PositionableObject {
 Q_OBJECT
-
-    Q_PROPERTY(int x READ x NOTIFY xChanged)
-    Q_PROPERTY(int y READ y NOTIFY yChanged)
 
 public:
     explicit Tank(QObject* parent = nullptr);
@@ -25,12 +23,7 @@ public:
     void moveRight();
     void makeShot();
 
-    int x() const;
-    int y() const;
-
 signals:
-    void xChanged();
-    void yChanged();
     void movedLeft();
     void movedRight();
     void movedUp();
@@ -38,7 +31,6 @@ signals:
     void shot(std::shared_ptr<Bullet>);
 
 private:
-    Position m_pos;
     Common::EDirection::Type m_dir;
 };
 

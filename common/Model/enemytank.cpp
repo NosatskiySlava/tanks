@@ -17,9 +17,9 @@ namespace {
         case Common::EDirection::LEFT:
             return Position(-1, 0);
         case Common::EDirection::RIGHT:
-            return Position(0, 1);
+            return Position(1, 0);
         default:
-            Q_ASSERT_X(FALSE, "enemytankbehavior.getdeltamovement", "non valid direction was passed");
+            Q_ASSERT_X(FALSE, "enemytank.getdeltamovement", "non valid direction was passed");
             return Position(0, 0);
         }
     }
@@ -42,7 +42,7 @@ namespace {
         return qrand() % maxRange;
     }
 
-    bool isDirectionChangeOccured() {
+    bool isTimeToChangeDirection() {
         return generateRandomNumberInRange(100) <= 20;
     }
 
@@ -51,39 +51,40 @@ namespace {
     }
 }
 
-void EnemyTank::makeRandomMove(const Position& currentPosition, const Common::EDirection::Type& currentDirection)
+
+EnemyTank::EnemyTank(QObject *parent)
+    : PositionableObject(parent)
 {
-    tankPosition = currentPosition;
-    tankDirection = currentDirection;
 
-    makeRandomMove();
-
-    if (tankDirection != currentDirection) {
-        emit directionChanged(tankDirection);
-    }
-    if (tankPosition != currentPosition) {
-        emit positionChanged(tankPosition);
-    }
 }
 
-void EnemyTank::makeRandomMove() {
+
+void EnemyTank::makeRandomMove()
+{
     updateDirection();
     updatePosition();
 }
 
 void EnemyTank::updateDirection() {
-    if (isDirectionChangeOccured()) {
-        tankDirection = getRandomDirection();
+    Common::EDirection::Type newDirection = tankDirection;
+    if (isTimeToChangeDirection()) {
+        newDirection = getRandomDirection();
+    }
+    while (!canTankMoveInDirection(newDirection)) {
+        newDirection = getRandomDirection();
+    }
+    if (newDirection != tankDirection) {
+        tankDirection = newDirection;
+        emit directionChanged();
     }
 }
 
 void EnemyTank::updatePosition() {
-    Position newPosition = tankPosition + getDeltaMovement(tankDirection);
-    while(!isValidPosition(newPosition)) {
-        tankDirection = getRandomDirection();
-        newPosition = tankPosition + getDeltaMovement(tankDirection);
-    }
-    tankPosition = newPosition;
+    setPosition(getPosition() + getDeltaMovement(tankDirection));
+}
+
+bool EnemyTank::canTankMoveInDirection(Common::EDirection::Type dir) {
+    return isValidPosition(getPosition() + getDeltaMovement(dir));
 }
 
 void EnemyTank::makeRandomShot() {

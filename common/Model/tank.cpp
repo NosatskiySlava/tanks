@@ -33,85 +33,80 @@ namespace {
 
         return result;
     }
+
+    Position getDeltaMovement(Common::EDirection::Type direction) {
+        switch(direction) {
+        case Common::EDirection::DOWN:
+            return Position(0, 1);
+        case Common::EDirection::UP:
+            return Position(0, -1);
+        case Common::EDirection::LEFT:
+            return Position(-1, 0);
+        case Common::EDirection::RIGHT:
+            return Position(1, 0);
+        default:
+            Q_ASSERT_X(FALSE, "enemytank.getdeltamovement", "non valid direction was passed");
+            return Position(0, 0);
+        }
+    }
 }
 
 Tank::Tank(QObject* p)
-    : QObject(p)
+    : PositionableObject(p)
     , m_dir(Common::EDirection::UP)
 {
 }
 
 Tank::Tank(const Position& i_pos, Common::EDirection::Type i_dir, QObject* parent)
-    : QObject(parent)
-    , m_pos(i_pos)
+    : PositionableObject(parent)
     , m_dir(i_dir)
 {
-
-}
-
-int Tank::x() const {
-    return m_pos.x;
-}
-
-int Tank::y() const {
-    return m_pos.y;
+    setPosition(i_pos);
 }
 
 void Tank::moveUp()
 {
     m_dir = Common::EDirection::UP;
-    if (m_pos.y == 0) {
-        emit movedUp();
-        return;
+    if (getPosition().y != 0) {
+        setPosition(getPosition() + getDeltaMovement(m_dir));
     }
 
-    --m_pos.y;
-    emit yChanged();
     emit movedUp();
 }
 
 void Tank::moveDown()
 {
     m_dir = Common::EDirection::DOWN;
-    if (m_pos.y >= GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
-        emit movedDown();
-        return;
+    if (getPosition().y < GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
+        setPosition(getPosition() + getDeltaMovement(m_dir));
     }
 
-    ++m_pos.y;
-    emit yChanged();
     emit movedDown();
 }
 
 void Tank::moveLeft()
 {
     m_dir = Common::EDirection::LEFT;
-    if (m_pos.x == 0) {
-        emit movedLeft();
-        return;
+    if (getPosition().x != 0) {
+        setPosition(getPosition() + getDeltaMovement(m_dir));
     }
 
-    --m_pos.x;
-    emit xChanged();
     emit movedLeft();
 }
 
 void Tank::moveRight()
 {
     m_dir = Common::EDirection::RIGHT;
-    if (m_pos.x >= (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
-        emit movedRight();
-        return;
+    if (getPosition().x < (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
+        setPosition(getPosition() + getDeltaMovement(m_dir));
     }
 
-    ++m_pos.x;
-    emit xChanged();
     emit movedRight();
 }
 
 void Tank::makeShot()
 {
-    std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(m_pos, m_dir), m_dir));
+    std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(getPosition(), m_dir), m_dir));
     emit shot(bullet);
 }
 
