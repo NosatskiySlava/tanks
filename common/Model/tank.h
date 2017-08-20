@@ -29,9 +29,6 @@ signals:
     void movedUp();
     void movedDown();
     void shot(std::shared_ptr<Bullet>);
-
-private:
-    Common::EDirection::Type m_dir;
 };
 
 #endif // TANK_H

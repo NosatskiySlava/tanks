@@ -10,7 +10,7 @@ class EnemyTank : public PositionableObject {
 public:
     EnemyTank(QObject* parent = nullptr);
 
-    void makeRandomMove();
+    void move() override;
     void makeRandomShot();
 
 signals:
@@ -19,7 +19,6 @@ signals:
     void shotMade();
 
 private:
-    void updatePosition();
     void updateDirection();
     bool canTankMoveInDirection(Common::EDirection::Type dir);
 

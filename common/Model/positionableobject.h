@@ -15,25 +15,33 @@ class PositionableObject : public QObject {
 public:
     int x() const;
     int y() const;
+    Common::EDirection::Type dir() const;
+
+    virtual void move();
 
 signals:
     void xChanged();
     void yChanged();
+    void dirChanged();
+
 
 protected:
     PositionableObject(QObject* parent = nullptr);
-    PositionableObject(const Position& pos, QObject* parent = nullptr);
+    PositionableObject(const Position& pos, Common::EDirection::Type dir, QObject* parent = nullptr);
 
     void setX(int x);
     void setY(int y);
+    void setDirection(Common::EDirection::Type direction);
 
     Position getPosition() const;
     void setPosition(const Position& pos);
 
+    void moveObjectTowardsDirection();
     Position getDeltaMovement(Common::EDirection::Type direction) const;
 
 private:
     Position position;
+    Common::EDirection::Type m_dir;
 };
 
 #endif //POSITIONABLEOBJECT_H

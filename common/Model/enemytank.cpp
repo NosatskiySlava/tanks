@@ -42,28 +42,21 @@ EnemyTank::EnemyTank(QObject *parent)
 
 }
 
-void EnemyTank::makeRandomMove()
+void EnemyTank::move()
 {
     updateDirection();
-    updatePosition();
+    moveObjectTowardsDirection();
 }
 
 void EnemyTank::updateDirection() {
-    Common::EDirection::Type newDirection = tankDirection;
+    Common::EDirection::Type newDirection = dir();
     if (isTimeToChangeDirection()) {
         newDirection = getRandomDirection();
     }
     while (!canTankMoveInDirection(newDirection)) {
         newDirection = getRandomDirection();
     }
-    if (newDirection != tankDirection) {
-        tankDirection = newDirection;
-        emit directionChanged();
-    }
-}
-
-void EnemyTank::updatePosition() {
-    setPosition(getPosition() + getDeltaMovement(tankDirection));
+    setDirection(newDirection);
 }
 
 bool EnemyTank::canTankMoveInDirection(Common::EDirection::Type dir) {

@@ -51,7 +51,7 @@ void Tank::moveUp()
 {
     m_dir = Common::EDirection::UP;
     if (getPosition().y != 0) {
-        setPosition(getPosition() + getDeltaMovement(m_dir));
+        move();
     }
 
     emit movedUp();
@@ -61,7 +61,7 @@ void Tank::moveDown()
 {
     m_dir = Common::EDirection::DOWN;
     if (getPosition().y < GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
-        setPosition(getPosition() + getDeltaMovement(m_dir));
+        move();
     }
 
     emit movedDown();
@@ -69,9 +69,9 @@ void Tank::moveDown()
 
 void Tank::moveLeft()
 {
-    m_dir = Common::EDirection::LEFT;
+    setDirection(Common::EDirection::LEFT);
     if (getPosition().x != 0) {
-        setPosition(getPosition() + getDeltaMovement(m_dir));
+        move();
     }
 
     emit movedLeft();
@@ -79,9 +79,9 @@ void Tank::moveLeft()
 
 void Tank::moveRight()
 {
-    m_dir = Common::EDirection::RIGHT;
+    setDirection(Common::EDirection::RIGHT);
     if (getPosition().x < (GameProperties::fieldWidth() - GameProperties::tankImageSize())) {
-        setPosition(getPosition() + getDeltaMovement(m_dir));
+        move();
     }
 
     emit movedRight();
@@ -89,7 +89,7 @@ void Tank::moveRight()
 
 void Tank::makeShot()
 {
-    std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(getPosition(), m_dir), m_dir));
+    std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(getPosition(), dir()), dir()));
     emit shot(bullet);
 }
 

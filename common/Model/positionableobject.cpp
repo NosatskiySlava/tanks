@@ -6,9 +6,10 @@ PositionableObject::PositionableObject(QObject *parent)
 
 }
 
-PositionableObject::PositionableObject(const Position& pos, QObject* parent)
+PositionableObject::PositionableObject(const Position& pos, Common::EDirection::Type dir, QObject* parent)
     : QObject(parent)
     , position(pos)
+    , m_dir(dir)
 {
 
 }
@@ -39,9 +40,24 @@ void PositionableObject::setY(int y) {
     }
 }
 
+void PositionableObject::setDirection(Common::EDirection::Type direction) {
+    if (m_dir != direction) {
+        m_dir = direction;
+        emit dirChanged();
+    }
+}
+
 void PositionableObject::setPosition(const Position& pos) {
     setX(pos.x);
     setY(pos.y);
+}
+
+virtual void PositionableObject::move() {
+    moveObjectTowardsDirection();
+}
+
+void PositionableObject::moveObjectTowardsDirection() {
+    setPosition(position + getDeltaMovement(m_dir));
 }
 
 Position PositionableObject::getDeltaMovement(Common::EDirection::Type direction) const {

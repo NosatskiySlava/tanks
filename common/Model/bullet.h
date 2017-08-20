@@ -15,15 +15,8 @@ public:
     explicit Bullet(QObject *parent = 0);
     Bullet(const Position& i_pos, Common::EDirection::Type dir, QObject *parent = 0);
 
-    void move();
-
-    Common::EDirection::Type dir() const;
-
 signals:
     void hit();
-
-private:
-    Common::EDirection::Type m_dir;
 };
 
 #endif // BULLET_H
