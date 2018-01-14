@@ -36,20 +36,19 @@ namespace {
 }
 
 Tank::Tank(QObject* p)
-    : PositionableObject(p)
-    , m_dir(Common::EDirection::UP)
+    : PositionableObject(Position(), Common::EDirection::UP, p)
 {
+
 }
 
 Tank::Tank(const Position& i_pos, Common::EDirection::Type i_dir, QObject* parent)
-    : PositionableObject(i_pos, parent)
-    , m_dir(i_dir)
+    : PositionableObject(i_pos, i_dir, parent)
 {
 }
 
 void Tank::moveUp()
 {
-    m_dir = Common::EDirection::UP;
+    setDirection(Common::EDirection::UP);
     if (getPosition().y != 0) {
         move();
     }
@@ -59,7 +58,7 @@ void Tank::moveUp()
 
 void Tank::moveDown()
 {
-    m_dir = Common::EDirection::DOWN;
+    setDirection(Common::EDirection::DOWN);
     if (getPosition().y < GameProperties::fieldHeight() - GameProperties::tankImageSize()) {
         move();
     }
@@ -92,4 +91,3 @@ void Tank::makeShot()
     std::shared_ptr<Bullet> bullet(new Bullet(calculateBulletPosition(getPosition(), dir()), dir()));
     emit shot(bullet);
 }
-

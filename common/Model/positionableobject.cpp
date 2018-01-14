@@ -22,6 +22,10 @@ int PositionableObject::y() const {
     return position.y;
 }
 
+Common::EDirection::Type PositionableObject::dir() const {
+    return m_dir;
+}
+
 Position PositionableObject::getPosition() const {
     return position;
 }
@@ -52,7 +56,7 @@ void PositionableObject::setPosition(const Position& pos) {
     setY(pos.y);
 }
 
-virtual void PositionableObject::move() {
+void PositionableObject::move() {
     moveObjectTowardsDirection();
 }
 
@@ -71,7 +75,7 @@ Position PositionableObject::getDeltaMovement(Common::EDirection::Type direction
     case Common::EDirection::RIGHT:
         return Position(1, 0);
     default:
-        Q_ASSERT_X(FALSE, "positionable.getdeltamovement", "non valid direction was passed");
+        //Q_ASSERT_X(FALSE, "positionable.getdeltamovement", "non valid direction was passed");
         return Position(0, 0);
     }
 }
